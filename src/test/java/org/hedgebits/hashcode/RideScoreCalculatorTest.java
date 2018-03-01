@@ -13,8 +13,8 @@ public class RideScoreCalculatorTest {
         Ride ride = new Ride(start, end, 5, 8);
         final Point car = new Point(0, 0);
 
-        final int score = RideScoreCalculator.getScore(ride, car, 100);
-        assertThat(score).isEqualTo(102);
+        final RideScore rs = RideScoreCalculator.getScore(ride, car, 100, 0);
+        assertThat(rs.score).isEqualTo(102);
     }
 
 }
