@@ -10,7 +10,6 @@ import java.util.Scanner;
 public class Application {
 
     public static void main(String[] args) throws IOException {
-
         final Scanner scanner = new Scanner(Resources.getResource("./a_example.in").openStream());
         InputInfo inputInfo = InputInfo.parse(scanner.nextLine());
         List<Ride> rides = new ArrayList<>();
