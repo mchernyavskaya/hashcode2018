@@ -1,8 +1,8 @@
 package org.hedgebits.hashcode;
 
-public class Point {
-    int row;
-    int col;
+class Point {
+    final int row;
+    final int col;
 
     Point(int row, int col) {
         this.row = row;

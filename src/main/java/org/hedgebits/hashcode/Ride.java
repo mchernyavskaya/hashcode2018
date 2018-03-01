@@ -9,17 +9,20 @@ import java.util.Scanner;
 @AllArgsConstructor
 class Ride {
 
-    private final int startRow;
-    private final int startCol;
-    private final int endRow;
-    private final int endCol;
-    private final long s;
-    private final long f;
+    private final Point startPoint;
+    private final Point endPoint;
+    private final long earliestStart;
+    private final long latestFinish;
 
     static Ride parse(String s) {
         Scanner scanner = new Scanner(s);
-        return new Ride(scanner.nextInt(), scanner.nextInt(), scanner.nextInt(),
-                scanner.nextInt(), scanner.nextLong(), scanner.nextLong());
+        return new Ride(
+                new Point(scanner.nextInt(), scanner.nextInt()),
+                new Point(scanner.nextInt(), scanner.nextInt()),
+                scanner.nextLong(), scanner.nextLong());
     }
 
+    int distance() {
+        return startPoint.distance(endPoint);
+    }
 }
