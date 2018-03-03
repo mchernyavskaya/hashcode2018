@@ -1,29 +1,29 @@
 package org.hedgebits.hashcode;
 
+@SuppressWarnings("SameParameterValue")
 class RideScoreCalculator {
 
-    // TODO: current time
-    static RideScore getScore(Ride ride, Point carPosition, int bonus, int currentTime) {
+    /**
+     * Calculates ride score
+     */
+    static RideScore getScore(Ride ride, Car car, int bonus, long currentTime) {
 
-        int carRideToStart = currentTime + ride.getStartPoint().distance(carPosition);
+        long carRideToStart = currentTime +
+                ride.getStartPoint().distance(car.getPos());
 
         boolean isStartInEarliest = carRideToStart <= ride.getEarliestStart();
 
-        long possibleStartTime = isStartInEarliest ? ride.getEarliestStart() : carRideToStart;
+        long possibleStartTime = isStartInEarliest ?
+                ride.getEarliestStart() : carRideToStart;
 
-        int rideLen = ride.getStartPoint().distance(ride.getEndPoint());
+        int rideLen = ride.distance();
         long finishTime = possibleStartTime + rideLen + 1;
         if (finishTime > ride.getLatestFinish()) {
-            return new RideScore(0, finishTime);
+            return new RideScore(0, finishTime, ride, car);
         }
 
-        int score = isStartInEarliest ?  rideLen + bonus : rideLen;
+        int score = isStartInEarliest ? rideLen + bonus : rideLen;
 
-        return new RideScore(score, finishTime);
-
-
+        return new RideScore(score, finishTime, ride, car);
     }
-
-
-
 }
